@@ -32,7 +32,7 @@ def sendMessage():
   json_str = json.dumps(response)
   resp = json.loads(json_str)
   response = resp['output']['text'][0]
-  return response
+  return uuid + "|" + response
 
 
 @app.route('/panic', methods=['POST'])
@@ -49,7 +49,11 @@ def panic():
     "uuid": uuid
   }
 
-  collection.insert_one(data)
+  entry = collection.find_one({'uuid': uuid})
+  if entry:
+    collection.find_one_and_update({'uuid': uuid}, {'$set': {'latitude': lat, "longitude": longi, "timestamp": ts}})
+  else:
+    collection.insert_one(data)
 
   return data
 
@@ -57,3 +61,15 @@ def panic():
 @app.route('/locations')
 def getLocs():
   return dumps(collection.find({}, {'_id': 0}))
+
+@app.route('/update')
+def updateAssistant():
+  response = assistant.update_dialog_node(
+    workspace_id = '9978a49e-ea89-4493-b33d-82298d3db20d',
+    dialog_node = 'greeting',
+    new_dialog_node = 'greeting',
+    new_output = {
+        'text': 'Hello! What can I do for you?'
+    }
+  )
+  
