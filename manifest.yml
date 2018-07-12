@@ -1,0 +1,15 @@
+---
+applications:
+- instances: 1
+  timeout: 180
+  name: WatsonAssistantOffline
+  buildpack: python_buildpack
+  command: python manage.py start 0.0.0.0:$PORT
+  memory: 512M
+  domain: mybluemix.net
+  host: Watson-Assistant-Offline
+  services:
+    - watson-assistant-off-conversation-1531405442823
+  env:
+    FLASK_APP : server
+    FLASK_DEBUG : false
