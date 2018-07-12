@@ -10,6 +10,7 @@ applications:
   host: Watson-Assistant-Offline
   services:
     - watson-assistant-off-conversation-1531405442823
+    - python-flask-microse-mongodb-1531407927624
   env:
     FLASK_APP : server
     FLASK_DEBUG : false
