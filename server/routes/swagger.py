@@ -1,4 +1,3 @@
-
 from flask import jsonify, render_template
 from server import app
 
