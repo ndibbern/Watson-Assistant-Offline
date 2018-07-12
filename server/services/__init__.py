@@ -6,6 +6,7 @@ from . import service_manager
 IBMCloudEnv.init()
 
 from . import service_watson_conversation
+from . import service_mongodb
 
 
 def initServices(app):

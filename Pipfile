@@ -15,3 +15,4 @@ ibmcloudenv ='~=0.0'
 Flask = "==0.11.1"
 gunicorn = "==19.7.1"
 prometheus-client = "*"
+pymongo ='~=3.5.0'

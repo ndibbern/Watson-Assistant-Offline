@@ -127,5 +127,33 @@
       "env:watson_conversation_url",
       "file:/server/localdev-config.json:$.watson_conversation_url"
     ]
+  },
+  "mongodb_ca": {
+    "searchPatterns": [
+      "user-provided:python-flask-microse-mongodb-1531407927624:ca_certificate_base64",
+      "cloudfoundry:$['compose-for-mongodb'][0].credentials.ca_certificate_base64",
+      "env:service_mongodb:$.ca_certificate_base64",
+      "env:mongodb_ca_certificate_base64",
+      "file:/server/localdev-config.json:$.mongodb_ca_certificate_base64"
+    ]
+  },
+  "mongodb": {
+    "credentials": {
+      "searchPatterns": [
+        "user-provided:python-flask-microse-mongodb-1531407927624:uri",
+        "cloudfoundry:mongodb",
+        "env:mongodb_credentials",
+        "file://localdev-config.json:mongodb_credentials"
+      ]
+    }
+  },
+  "mongodb_uri": {
+    "searchPatterns": [
+      "user-provided:python-flask-microse-mongodb-1531407927624:uri",
+      "cloudfoundry:$['compose-for-mongodb'][0].credentials.uri",
+      "env:service_mongodb:$.uri",
+      "env:mongodb_uri",
+      "file:/server/localdev-config.json:$.mongodb_uri"
+    ]
   }
 }
