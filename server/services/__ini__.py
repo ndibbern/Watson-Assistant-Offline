@@ -5,14 +5,11 @@ from ibmcloudenv import IBMCloudEnv
 from . import service_manager
 IBMCloudEnv.init()
 
-from . import service_watson_conversation
+from . import service_mongodb
 
 
 def initServices(app):
 	
-	name, service = service_watson_conversation.getService(app)
-	service_manager.set(name, service)
-
 	name, service = service_mongodb.getService(app)
 	service_manager.set(name, service)
 
