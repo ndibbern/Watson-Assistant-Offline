@@ -42,18 +42,20 @@ def panic():
   lat = request.args.get('lat')
   longi = request.args.get('long')
   uuid = request.args.get('uuid')
+  name = request.args.get('name')
   ts = datetime.datetime.now()
 
   data = {
     "latitude": lat,
     "longitude": longi,
     "timestamp": ts,
-    "uuid": uuid
+    "uuid": uuid,
+    "name": name
   }
 
   entry = collection.find_one({'uuid': uuid})
   if entry:
-    collection.find_one_and_update({'uuid': uuid}, {'$set': {'latitude': lat, "longitude": longi, "timestamp": ts}})
+    collection.find_one_and_update({'uuid': uuid}, {'$set': {'latitude': lat, "longitude": longi, "timestamp": ts, "name": name}})
   else:
     collection.insert_one(data)
 
@@ -63,6 +65,7 @@ def panic():
 @app.route('/locations')
 def getLocs():
   return dumps(collection.find({}, {'_id': 0}))
+
 
 @app.route('/update', methods=['POST'])
 def updateAssistant():
@@ -76,4 +79,3 @@ def updateAssistant():
     }
   )
   return msg
-  
