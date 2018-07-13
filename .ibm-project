@@ -1,1 +1,1 @@
-{"build-release-ready":false,"build-debug-ready":true,"devops":false,"deploy-image":"","chart-path":"","ibm-cluster":"","motd-access":"Thu, 12 Jul 2018 11:14:47 CDT","deploy-target":""}
+{"build-release-ready":true,"build-debug-ready":false,"devops":false,"deploy-image":"","chart-path":"","ibm-cluster":"","motd-access":"Fri, 13 Jul 2018 08:38:46 CDT","deploy-target":"buildpack"}

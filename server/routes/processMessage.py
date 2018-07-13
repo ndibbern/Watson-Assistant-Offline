@@ -2,11 +2,13 @@ import json
 import datetime
 from server import app
 from flask import Flask
+from flask_cors import CORS
 from flask import abort, session, request, redirect
 from server.services import *
 from bson.json_util import dumps
 
 initServices(app) # Initialize Services
+CORS(app)
 
 # The conversation instance from service_manager is already initialized
 # with your supplied credentials
@@ -62,14 +64,16 @@ def panic():
 def getLocs():
   return dumps(collection.find({}, {'_id': 0}))
 
-@app.route('/update')
+@app.route('/update', methods=['POST'])
 def updateAssistant():
-  response = assistant.update_dialog_node(
-    workspace_id = '9978a49e-ea89-4493-b33d-82298d3db20d',
-    dialog_node = 'greeting',
-    new_dialog_node = 'greeting',
+  msg = request.args.get('msg')
+  response = conversation.update_dialog_node(
+    workspace_id = workspace_id,
+    dialog_node = 'node_3_1531413178981',
+    new_dialog_node = 'node_3_1531413178981',
     new_output = {
-        'text': 'Hello! What can I do for you?'
+      'text': msg
     }
   )
+  return msg
   
